@@ -1,0 +1,95 @@
+CREATE DATABASE HospitalQueueDB;
+
+USE HospitalQueueDB;
+
+CREATE TABLE Usuarios (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(255) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(255) NOT NULL,
+    Rol NVARCHAR(50) NOT NULL CHECK (Rol IN ('Recepcion', 'Enfermero', 'Medico')),
+    FechaCreacion DATETIME2 NOT NULL DEFAULT GETUTCDATE()
+);
+
+CREATE TABLE Pacientes (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre NVARCHAR(100) NOT NULL,
+    Identificacion NVARCHAR(20) NOT NULL UNIQUE,
+    FechaNacimiento DATE NOT NULL,
+    Genero NVARCHAR(10) CHECK (Genero IN ('Masculino', 'Femenino', 'Otro')),
+    Sintomas NVARCHAR(500),
+    FechaRegistro DATETIME2 NOT NULL DEFAULT GETUTCDATE()
+);
+
+CREATE TABLE Clinicas (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre NVARCHAR(100) NOT NULL,
+    Descripcion NVARCHAR(500),
+    Activa BIT NOT NULL DEFAULT 1
+);
+
+CREATE TABLE Turnos (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    PacienteId INT NOT NULL,
+    ClinicaId INT NOT NULL,
+    NumeroTurno INT NOT NULL,
+    Estado NVARCHAR(20) NOT NULL DEFAULT 'Pendiente' 
+        CHECK (Estado IN ('Pendiente', 'Llamado', 'EnAtencion', 'Atendido', 'Cancelado')),
+    FechaCreacion DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
+    FechaLlamado DATETIME2 NULL,
+    FechaAtencion DATETIME2 NULL,
+    MedicoId INT NULL,
+    Observaciones NVARCHAR(500) NULL
+);
+
+ALTER TABLE Turnos 
+ADD CONSTRAINT FK_Turnos_Pacientes 
+FOREIGN KEY (PacienteId) REFERENCES Pacientes(Id);
+
+ALTER TABLE Turnos 
+ADD CONSTRAINT FK_Turnos_Clinicas 
+FOREIGN KEY (ClinicaId) REFERENCES Clinicas(Id);
+
+ALTER TABLE Turnos 
+ADD CONSTRAINT FK_Turnos_Medicos 
+FOREIGN KEY (MedicoId) REFERENCES Usuarios(Id);
+
+CREATE INDEX IX_Usuarios_Email ON Usuarios(Email);
+
+CREATE INDEX IX_Pacientes_Identificacion ON Pacientes(Identificacion);
+
+CREATE INDEX IX_Turnos_Clinica_Estado ON Turnos(ClinicaId, Estado);
+
+CREATE INDEX IX_Turnos_NumeroTurno ON Turnos(NumeroTurno);
+
+CREATE INDEX IX_Turnos_FechaCreacion ON Turnos(FechaCreacion);
+
+USE HospitalQueueDB;
+SELECT 
+    'Usuarios' AS Tabla, COUNT(*) AS Total FROM Usuarios
+UNION ALL
+SELECT 'Pacientes', COUNT(*) FROM Pacientes
+UNION ALL
+SELECT 'Clinicas', COUNT(*) FROM Clinicas
+UNION ALL
+SELECT 'Turnos', COUNT(*) FROM Turnos;
+
+IF NOT EXISTS (SELECT 1 FROM Usuarios WHERE Email = 'admin@hospital.com')
+BEGIN
+    INSERT INTO Usuarios (Nombre, Email, PasswordHash, Rol, FechaCreacion)
+    VALUES 
+    ('Administrador', 'admin@hospital.com', 'admin123', 'Recepcion', GETUTCDATE()),
+    ('Dr. Juan Perez', 'juan.perez@hospital.com', 'medico123', 'Medico', GETUTCDATE()),
+    ('Enf. Maria Lopez', 'maria.lopez@hospital.com', 'enfermero123', 'Enfermero', GETUTCDATE());
+END
+
+IF NOT EXISTS (SELECT 1 FROM Clinicas)
+BEGIN
+    INSERT INTO Clinicas (Nombre, Descripcion, Activa)
+    VALUES 
+    ('Medicina General', 'Consulta de medicina general para pacientes adultos', 1),
+    ('Pediatría', 'Atención especializada para niños y adolescentes', 1),
+    ('Ginecología', 'Consulta ginecológica y control prenatal', 1),
+    ('Traumatología', 'Atención de lesiones musculoesqueléticas', 1),
+    ('Cardiología', 'Evaluación y tratamiento de enfermedades cardíacas', 1);
+END
