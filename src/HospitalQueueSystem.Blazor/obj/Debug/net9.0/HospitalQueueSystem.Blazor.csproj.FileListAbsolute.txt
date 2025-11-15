@@ -48,3 +48,16 @@ D:\Documentos\Repositorios\DesarrolloWeb9.0\HospitalQueueSystem\src\HospitalQueu
 D:\Documentos\Repositorios\DesarrolloWeb9.0\HospitalQueueSystem\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.pdb
 D:\Documentos\Repositorios\DesarrolloWeb9.0\HospitalQueueSystem\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.genruntimeconfig.cache
 D:\Documentos\Repositorios\DesarrolloWeb9.0\HospitalQueueSystem\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\ref\HospitalQueueSystem.Blazor.dll
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.csproj.AssemblyReference.cache
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.AssemblyInfoInputs.cache
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.AssemblyInfo.cs
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.csproj.CoreCompileInputs.cache
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.RazorAssemblyInfo.cache
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.RazorAssemblyInfo.cs
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.sourcelink.json
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.dll
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\refint\HospitalQueueSystem.Blazor.dll
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.Blazor\obj\Debug\net9.0\HospitalQueueSystem.Blazor.pdb
