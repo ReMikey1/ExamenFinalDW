@@ -157,3 +157,15 @@ D:\Documentos\Repositorios\DesarrolloWeb9.0\HospitalQueueSystem\src\HospitalQueu
 D:\Documentos\Repositorios\DesarrolloWeb9.0\HospitalQueueSystem\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.pdb
 D:\Documentos\Repositorios\DesarrolloWeb9.0\HospitalQueueSystem\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.genruntimeconfig.cache
 D:\Documentos\Repositorios\DesarrolloWeb9.0\HospitalQueueSystem\src\HospitalQueueSystem.API\obj\Debug\net9.0\ref\HospitalQueueSystem.API.dll
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.csproj.AssemblyReference.cache
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.AssemblyInfoInputs.cache
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.AssemblyInfo.cs
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.csproj.CoreCompileInputs.cache
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.sourcelink.json
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.dll
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\refint\HospitalQueueSystem.API.dll
+C:\Users\mike_\OneDrive\Documents\desarrollo web\ExamenFinal\DesarrolloWeb\src\HospitalQueueSystem.API\obj\Debug\net9.0\HospitalQueueSystem.API.pdb

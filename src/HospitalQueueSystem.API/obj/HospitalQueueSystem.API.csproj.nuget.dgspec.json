@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.API\\HospitalQueueSystem.API.csproj": {}
+    "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.API\\HospitalQueueSystem.API.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.API\\HospitalQueueSystem.API.csproj": {
+    "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.API\\HospitalQueueSystem.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.API\\HospitalQueueSystem.API.csproj",
+        "projectUniqueName": "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.API\\HospitalQueueSystem.API.csproj",
         "projectName": "HospitalQueueSystem.API",
-        "projectPath": "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.API\\HospitalQueueSystem.API.csproj",
-        "packagesPath": "C:\\Users\\josel\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.API\\obj\\",
+        "projectPath": "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.API\\HospitalQueueSystem.API.csproj",
+        "packagesPath": "C:\\Users\\mike_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\josel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mike_\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.Models\\HospitalQueueSystem.Models.csproj": {
-                "projectPath": "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.Models\\HospitalQueueSystem.Models.csproj"
+              "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.Models\\HospitalQueueSystem.Models.csproj": {
+                "projectPath": "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.Models\\HospitalQueueSystem.Models.csproj"
               }
             }
           }
@@ -48,7 +48,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -100,24 +100,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.Models\\HospitalQueueSystem.Models.csproj": {
+    "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.Models\\HospitalQueueSystem.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.Models\\HospitalQueueSystem.Models.csproj",
+        "projectUniqueName": "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.Models\\HospitalQueueSystem.Models.csproj",
         "projectName": "HospitalQueueSystem.Models",
-        "projectPath": "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.Models\\HospitalQueueSystem.Models.csproj",
-        "packagesPath": "C:\\Users\\josel\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\Repositorios\\DesarrolloWeb9.0\\HospitalQueueSystem\\src\\HospitalQueueSystem.Models\\obj\\",
+        "projectPath": "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.Models\\HospitalQueueSystem.Models.csproj",
+        "packagesPath": "C:\\Users\\mike_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mike_\\OneDrive\\Documents\\desarrollo web\\ExamenFinal\\DesarrolloWeb\\src\\HospitalQueueSystem.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\josel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mike_\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -144,7 +144,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -171,7 +171,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

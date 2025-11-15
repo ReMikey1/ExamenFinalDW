@@ -62,3 +62,274 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+/* Estilos para los botones de reasignación */
+.turno-actions {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Estilos para el modal de historial */
+.modal-content {
+    border-radius: 10px;
+}
+
+.table-responsive {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Indicador de reasignaciones */
+.badge.bg-secondary.ml-1 {
+    font-size: 0.6em;
+    cursor: help;
+}
+
+/* Estados de turnos */
+.turno-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    border-left: 4px solid #007bff;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.turno-item.llamado {
+    border-left-color: #ffc107;
+    background-color: #fff3cd;
+}
+
+.turno-item.en-atencion {
+    border-left-color: #28a745;
+    background-color: #d4edda;
+}
+
+.turno-item.pendiente {
+    border-left-color: #17a2b8;
+    background-color: #d1ecf1;
+}
+
+.turno-info {
+    flex: 1;
+}
+
+.turno-info strong {
+    display: block;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.turno-info span {
+    display: block;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* Estilos específicos para dashboard */
+.dashboard-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-info {
+    background: #e9ecef;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.nuevo-paciente-form {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #dee2e6;
+}
+
+.clinica-colas {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: white;
+}
+
+.clinica-colas h6 {
+    color: #495057;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.no-turnos {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+/* Estilos para los modales */
+.modal {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-header {
+    background: #007bff;
+    color: white;
+    border-bottom: none;
+}
+
+.modal-header .close {
+    color: white;
+    opacity: 0.8;
+}
+
+.modal-header .close:hover {
+    opacity: 1;
+}
+
+/* Mejoras para tablas */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.table th {
+    border-top: none;
+    background: #343a40;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .turno-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .turno-actions {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+/* Efectos hover para mejor UX */
+.turno-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+/* Estilos para badges de estado */
+.badge {
+    font-size: 0.75em;
+    padding: 0.35em 0.65em;
+}
+
+.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529;
+}
+
+.bg-success {
+    background-color: #28a745 !important;
+}
+
+.bg-info {
+    background-color: #17a2b8 !important;
+}
+
+.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+/* Espaciados mejorados */
+.mr-1 {
+    margin-right: 0.25rem !important;
+}
+
+.ml-1 {
+    margin-left: 0.25rem !important;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
+
+/* Formularios mejorados */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da;
+    padding: 0.375rem 0.75rem;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Cards mejoradas */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border-bottom: none;
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+.card-header h5 {
+    margin: 0;
+    font-weight: 600;
+}

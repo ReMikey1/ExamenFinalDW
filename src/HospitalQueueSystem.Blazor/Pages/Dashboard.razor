@@ -2,6 +2,7 @@
 @using HospitalQueueSystem.Blazor.Services
 @using HospitalQueueSystem.Models
 @inject TurnosService TurnosService
+@inject ReasignacionesService ReasignacionesService
 @inject NavigationManager Navigation
 @inject IJSRuntime JSRuntime
 
@@ -102,8 +103,29 @@
                                                     <strong>Turno @turno.NumeroTurno</strong>
                                                     <span>@turno.Paciente?.Nombre</span>
                                                     <small class="badge @GetBadgeClass(turno.Estado)">@turno.Estado</small>
+                                                    @if (turnoHasReasignaciones(turno.Id))
+                                                    {
+                                                        <small class="badge bg-secondary ml-1" title="Tiene reasignaciones">↷</small>
+                                                    }
                                                 </div>
                                                 <div class="turno-actions">
+                                                    <!-- BOTÓN DE HISTORIAL DE REASIGNACIONES -->
+                                                    <button class="btn btn-sm btn-info mr-1" 
+                                                            @onclick="() => MostrarHistorialReasignaciones(turno)"
+                                                            title="Ver historial de reasignaciones">
+                                                        📋
+                                                    </button>
+                                                    
+                                                    <!-- BOTÓN DE REASIGNAR -->
+                                                    @if (userRole == "Recepcion" || userRole == "Enfermero" || userRole == "Medico")
+                                                    {
+                                                        <button class="btn btn-sm btn-warning mr-1" 
+                                                                @onclick="() => MostrarModalReasignar(turno)"
+                                                                title="Reasignar a otra clínica">
+                                                            🔄
+                                                        </button>
+                                                    }
+                                                    
                                                     @if (turno.Estado == "Pendiente" && (userRole == "Medico" || userRole == "Enfermero"))
                                                     {
                                                         <button class="btn btn-sm btn-primary" @onclick="() => LlamarTurno(turno.Id)">
@@ -140,6 +162,74 @@
     </div>
 </div>
 
+<!-- MODAL DE REASIGNACIÓN -->
+<ReasignarModal 
+    @bind-Mostrar="mostrarModalReasignar"
+    Turno="@turnoSeleccionado"
+    OnReasignado="CargarDatos" />
+
+<!-- MODAL DE HISTORIAL DE REASIGNACIONES -->
+@if (mostrarHistorial && turnoSeleccionado != null)
+{
+    <div class="modal d-block" style="background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        📋 Historial de Reasignaciones - @turnoSeleccionado.Paciente?.Nombre
+                    </h5>
+                    <button type="button" class="close" @onclick="CerrarHistorial">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if (historialReasignaciones.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Clínica Anterior</th>
+                                        <th>Clínica Nueva</th>
+                                        <th>Motivo</th>
+                                        <th>Usuario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var reasignacion in historialReasignaciones)
+                                    {
+                                        <tr>
+                                            <td>@reasignacion.FechaReasignacion.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td>
+                                                <span class="badge bg-secondary">@reasignacion.ClinicaAnterior?.Nombre</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-success">@reasignacion.ClinicaNueva?.Nombre</span>
+                                            </td>
+                                            <td>@reasignacion.Motivo</td>
+                                            <td>@reasignacion.Usuario?.Nombre</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info text-center">
+                            📝 No hay historial de reasignaciones para este turno.
+                        </div>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="CerrarHistorial">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 @code {
     private List<Clinica> clinicas = new();
     private Dictionary<int, List<Turno>> turnosPorClinica = new();
@@ -148,6 +238,13 @@
     private int clinicaSeleccionada = 0;
     private string userName = string.Empty;
     private string userRole = string.Empty;
+    
+    // NUEVAS VARIABLES PARA REASIGNACIÓN
+    private bool mostrarModalReasignar = false;
+    private Turno? turnoSeleccionado;
+    private List<Reasignacion> historialReasignaciones = new();
+    private bool mostrarHistorial = false;
+    private Dictionary<int, bool> turnosConReasignaciones = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -198,6 +295,12 @@
             {
                 var turnos = await TurnosService.GetTurnosPorClinicaAsync(clinica.Id) ?? new();
                 turnosPorClinica[clinica.Id] = turnos;
+                
+                // Verificar reasignaciones para cada turno
+                foreach (var turno in turnos)
+                {
+                    await VerificarReasignacionesTurno(turno.Id);
+                }
             }
             StateHasChanged();
         }
@@ -205,6 +308,56 @@
         {
             Console.WriteLine($"Error cargando datos: {ex.Message}");
         }
+    }
+
+    private async Task VerificarReasignacionesTurno(int turnoId)
+    {
+        try
+        {
+            var reasignaciones = await ReasignacionesService.GetReasignacionesPorTurnoAsync(turnoId);
+            turnosConReasignaciones[turnoId] = reasignaciones?.Any() == true;
+        }
+        catch
+        {
+            turnosConReasignaciones[turnoId] = false;
+        }
+    }
+
+    private bool turnoHasReasignaciones(int turnoId)
+    {
+        return turnosConReasignaciones.ContainsKey(turnoId) && turnosConReasignaciones[turnoId];
+    }
+
+    // NUEVOS MÉTODOS PARA REASIGNACIÓN
+    private async Task MostrarModalReasignar(Turno turno)
+    {
+        turnoSeleccionado = turno;
+        mostrarModalReasignar = true;
+        StateHasChanged();
+    }
+
+    private async Task MostrarHistorialReasignaciones(Turno turno)
+    {
+        turnoSeleccionado = turno;
+        try
+        {
+            var historial = await ReasignacionesService.GetReasignacionesPorTurnoAsync(turno.Id);
+            historialReasignaciones = historial ?? new();
+            mostrarHistorial = true;
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error cargando historial: {ex.Message}");
+        }
+    }
+
+    private void CerrarHistorial()
+    {
+        mostrarHistorial = false;
+        historialReasignaciones = new();
+        turnoSeleccionado = null;
+        StateHasChanged();
     }
 
     private void ShowNuevoPaciente() => showNuevoPaciente = true;

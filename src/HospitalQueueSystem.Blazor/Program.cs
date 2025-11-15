@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-// ✅ FORMA CORRECTA: Registrar HttpClient con nombre específico
+// FORMA CORRECTA: Registrar HttpClient con nombre específico
 builder.Services.AddHttpClient("HospitalAPI", client =>
 {
     client.BaseAddress = new Uri("https://localhost:7000/");
@@ -16,9 +16,10 @@ builder.Services.AddHttpClient("HospitalAPI", client =>
     Console.WriteLine("✅ HttpClient configurado con BaseAddress: https://localhost:7000/");
 });
 
-// ✅ Registrar servicios que usarán HttpClient
+// Registrar servicios que usarán HttpClient
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<TurnosService>();
+builder.Services.AddScoped<ReasignacionesService>(); // NUEVO SERVICIO
 
 var app = builder.Build();
 
@@ -41,6 +42,7 @@ app.Urls.Clear();
 app.Urls.Add("https://localhost:7001");
 app.Urls.Add("http://localhost:5001");
 
-Console.WriteLine("🚀 Blazor configurado para puerto 7001");
+Console.WriteLine("Blazor configurado para puerto 7001");
+Console.WriteLine("Servicio de Reasignaciones registrado correctamente");
 
 app.Run();

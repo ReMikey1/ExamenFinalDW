@@ -1,0 +1,176 @@
+<div class="modal @(Mostrar ? "d-block" : "d-none")" style="background-color: rgba(0,0,0,0.5);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reasignar Paciente</h5>
+                <button type="button" class="close" @onclick="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if (Turno != null)
+                {
+                    <div class="form-group">
+                        <label><strong>Paciente:</strong> @Turno.Paciente?.Nombre</label>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Clínica Actual:</strong> @Turno.Clinica?.Nombre</label>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Turno Actual:</strong> @Turno.NumeroTurno</label>
+                    </div>
+
+                    <EditForm Model="@ReasignacionRequest" OnValidSubmit="@OnReasignar">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+
+                        <div class="form-group">
+                            <label for="clinicaNueva">Nueva Clínica *</label>
+                            <InputSelect id="clinicaNueva" @bind-Value="ReasignacionRequest.ClinicaNuevaId" class="form-control">
+                                <option value="">Seleccionar clínica...</option>
+                                @foreach (var clinica in ClinicasDisponibles)
+                                {
+                                    <option value="@clinica.Id">@clinica.Nombre</option>
+                                }
+                            </InputSelect>
+                            <ValidationMessage For="@(() => ReasignacionRequest.ClinicaNuevaId)" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="motivo">Motivo de Reasignación *</label>
+                            <InputTextArea id="motivo" @bind-Value="ReasignacionRequest.Motivo" 
+                                          class="form-control" placeholder="Ej: Área saturada, cambio de criterio médico, necesidad de especialista..."
+                                          rows="3" />
+                            <ValidationMessage For="@(() => ReasignacionRequest.Motivo)" />
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(MensajeError))
+                        {
+                            <div class="alert alert-danger">@MensajeError</div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(MensajeExito))
+                        {
+                            <div class="alert alert-success">@MensajeExito</div>
+                        }
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" @onclick="Cerrar">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" disabled="@Procesando">
+                                @(Procesando ? "Procesando..." : "Reasignar")
+                            </button>
+                        </div>
+                    </EditForm>
+                }
+                else
+                {
+                    <div class="alert alert-warning">No se ha seleccionado un turno válido.</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public bool Mostrar { get; set; }
+    [Parameter] public Turno? Turno { get; set; }
+    [Parameter] public EventCallback<bool> MostrarChanged { get; set; }
+    [Parameter] public EventCallback OnReasignado { get; set; }
+
+    [Inject] private ReasignacionesService ReasignacionesService { get; set; } = null!;
+    [Inject] private AuthService AuthService { get; set; } = null!;
+
+    private ReasignacionRequest ReasignacionRequest { get; set; } = new();
+    private List<Clinica> ClinicasDisponibles { get; set; } = new();
+    private bool Procesando { get; set; }
+    private string MensajeError { get; set; } = string.Empty;
+    private string MensajeExito { get; set; } = string.Empty;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Mostrar && Turno != null)
+        {
+            await CargarClinicasDisponibles();
+            ReasignacionRequest = new ReasignacionRequest 
+            { 
+                TurnoId = Turno.Id 
+            };
+            MensajeError = string.Empty;
+            MensajeExito = string.Empty;
+        }
+    }
+
+    private async Task CargarClinicasDisponibles()
+    {
+        try
+        {
+            var clinicas = await ReasignacionesService.GetClinicasAsync();
+            if (clinicas != null)
+            {
+                // Filtrar para excluir la clínica actual
+                ClinicasDisponibles = clinicas
+                    .Where(c => c.Id != Turno?.ClinicaId && c.Activa)
+                    .ToList();
+            }
+        }
+        catch (Exception ex)
+        {
+            MensajeError = $"Error al cargar clínicas: {ex.Message}";
+        }
+    }
+
+    private async Task OnReasignar()
+    {
+        if (Turno == null) return;
+
+        Procesando = true;
+        MensajeError = string.Empty;
+        MensajeExito = string.Empty;
+
+        try
+        {
+            // Validaciones básicas
+            if (ReasignacionRequest.ClinicaNuevaId == 0)
+            {
+                MensajeError = "Debe seleccionar una clínica nueva";
+                Procesando = false;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(ReasignacionRequest.Motivo))
+            {
+                MensajeError = "Debe especificar el motivo de la reasignación";
+                Procesando = false;
+                return;
+            }
+
+            var resultado = await ReasignacionesService.ReasignarTurnoAsync(ReasignacionRequest);
+            
+            if (resultado != null)
+            {
+                MensajeExito = "¡Turno reasignado exitosamente!";
+                await Task.Delay(1500); // Esperar 1.5 segundos para que se vea el mensaje
+                await OnReasignado.InvokeAsync();
+                await Cerrar();
+            }
+            else
+            {
+                MensajeError = "Error al reasignar el turno. Por favor, intente nuevamente.";
+            }
+        }
+        catch (Exception ex)
+        {
+            MensajeError = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            Procesando = false;
+        }
+    }
+
+    private async Task Cerrar()
+    {
+        Mostrar = false;
+        await MostrarChanged.InvokeAsync(false);
+    }
+}
